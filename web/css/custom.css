@@ -1,0 +1,164 @@
+:root 
+{
+  --rich-black: #011722; 
+  --prussian-blue: #013A57;
+  --bleu-de-france: #307EE8;
+  --mustard: #FF8500;
+  --folly: #FF0058;
+  --dark-khaki: #8DC672;
+  --spanish-gray: #9A9A9A;
+  --platinum: #E3E3E3;
+  --anti-flash-white: #E9F2F9;
+  --cosmic-latte: #FFF2E4;
+  --linen: #FCECEC;
+  --isabelline: #F4F6EE;
+
+  /* Berth Planning Colors */
+  --blue: #80C4E9;
+  --light-blue: #D4EBF8;
+  --green: #7ED4AD;
+  --red-blood: #AF1740;
+  --light-orange: #FF9C73;
+  --soft-orange: #FBD288;
+  --maroon: #EFB6C8;
+  --dark-brown: #543A14;
+}
+
+.fixed-table-pagination{
+	display:none !important;
+}
+
+.link-label {
+	cursor: pointer !important;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	text-underline-position: under;
+	text-decoration-thickness: 2px;
+	text-decoration-color: var(--bleu-de-france) !important;
+	color: var(--bleu-de-france) !important;
+}
+
+.overlay {
+	cursor: wait;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #000;
+	z-index: 100001;
+	opacity: 0.8;
+}
+
+.overlay:after {
+    content: '\A';
+    position: absolute;
+    width: 100%; 
+    height:100%;
+    top:0; 
+    left:0;
+    background:rgba(0,0,0,0.5);
+    opacity: 1;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    z-index: 100002;
+}
+
+.form-group.required label::after {
+	content: "*";
+	color: red;
+}
+
+.bootstrap-table-pagination > .pagination-size .dropdown-menu {
+	right: 0;
+	left: auto;
+}
+
+.pagination-size .dropdown-menu li {
+	height:25px;
+}
+
+.pagination-size .dropdown-menu li.active {
+	background-color: var(--bleu-de-france) !important;
+}
+
+.pagination-size .dropdown-menu li.active a {
+	color: white;
+}
+
+.pagination-size .dropdown-menu a {
+	display:inline-block;
+    width:100%;
+    height:100%;
+    color: black;
+    text-decoration: none;
+    padding-left: 20px;
+}
+
+.pagination-size .dropdown-menu {
+	margin-left: 10px;
+}
+
+.main-menu li:hover>a,
+nav.main-menu li.active>a,
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover,
+.dropdown-menu>.active>a:focus {
+	color:white;
+  background-color: var(--bleu-de-france) !important;
+}
+
+/* Container for responsive sizing */
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+  width: auto !important;
+  max-width: 100%;
+}
+
+/* Dropdown toggle button - size to content */
+.bootstrap-select .dropdown-toggle {
+  padding-right: 25px; /* Space for caret */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+/* Dropdown menu - size to content */
+.bootstrap-select .dropdown-menu {
+  min-width: 10%;
+  width: auto !important;
+}
+
+/* Make options wrap if needed */
+.bootstrap-select .dropdown-menu li a {
+  font-size: .875rem;
+  white-space: normal;
+}
+
+.bootstrap-table > .fixed-table-container > .fixed-table-body > .table > thead > tr > th {
+  vertical-align: middle;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.copy-btn {
+  background-color: var(--bleu-de-france);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.copy-btn:hover {
+  background-color: #0056b3;
+}
+
+input::placeholder {
+  text-transform: none !important;
+}
