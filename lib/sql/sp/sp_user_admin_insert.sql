@@ -1,26 +1,27 @@
 DROP FUNCTION sp_user_admin_insert;
 CREATE OR REPLACE FUNCTION sp_user_admin_insert
 (
-	out_num              OUT INTEGER,
-	out_str              OUT VARCHAR,
-	in_user_id           IN users.user_id%TYPE,
-	in_password 		 IN users.password%TYPE,
-    in_first_name        IN users.first_name%TYPE,
-    in_last_name         IN users.last_name%TYPE,
-    in_gender            IN users.gender%TYPE,
-    in_birthdate         IN users.birthdate%TYPE,
-    in_email             IN users.email%TYPE,
-    in_phone             IN users.phone%TYPE,
-    in_group             IN TEXT,
-    in_office            IN users.office_id%TYPE,
-	in_create_by         IN users.id%TYPE,
-	in_owner_id          IN businesses.id%TYPE
+	out_num             OUT INTEGER,
+	out_str             OUT VARCHAR,
+	out_user_id			OUT	users.id%TYPE,
+	in_user_id          IN 	users.user_id%TYPE,
+	in_password 		IN 	users.password%TYPE,
+    in_first_name       IN 	users.first_name%TYPE,
+    in_last_name        IN 	users.last_name%TYPE,
+    in_gender           IN 	users.gender%TYPE,
+    in_birthdate        IN 	users.birthdate%TYPE,
+    in_email            IN 	users.email%TYPE,
+    in_phone            IN 	users.phone%TYPE,
+    in_group            IN 	TEXT,
+    in_office           IN 	users.office_id%TYPE,
+	in_create_by        IN 	users.id%TYPE,
+	in_owner_id         IN 	businesses.id%TYPE,
+	in_role_type		IN	users.role_type%TYPE DEFAULT 'SA'
 )
 AS $$
 DECLARE
 	gr 				RECORD;
 	v_cnt    	    INT;
-	v_Id 			INT;
 	v_new_value	    admin_history.new_value%TYPE;
 BEGIN
 	out_num := 0;
@@ -73,10 +74,10 @@ BEGIN
         in_phone,
         STRING_TO_ARRAY(in_group, ',')::INT[],
         in_office,
-		'SA',
+		in_role_type,
         in_create_by,
         NOW()
-	) RETURNING id INTO v_Id;
+	) RETURNING id INTO out_user_id;
 
 	SELECT
 		'User ID : ' 		|| UPPER(u.user_id) 		|| CHR(10) ||
@@ -113,7 +114,7 @@ BEGIN
 	FROM
 		users u
 	WHERE
-		u.id = v_Id;
+		u.id = out_user_id;
 		
 	-- FOR gr IN (
 	-- 	SELECT

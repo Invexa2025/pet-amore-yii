@@ -1,22 +1,22 @@
 DROP FUNCTION sp_office_insert;
 CREATE OR REPLACE FUNCTION sp_office_insert
 (
-	out_num              OUT INTEGER,
-	out_str              OUT VARCHAR,
-    in_office_code       IN offices.code%TYPE,
-    in_office_name       IN offices.name%TYPE,
-    in_country_code      IN countries.code_2%TYPE,
-    in_city_code         IN cities.code%TYPE,
-    in_address           IN addresses.address%TYPE,
-    in_phone             IN offices.phone%TYPE,
-    in_fax               IN offices.fax%TYPE,
-	in_create_by         IN users.id%TYPE,
-	in_owner_id          IN businesses.id%TYPE
+	out_num             OUT INTEGER,
+	out_str             OUT VARCHAR,
+    out_office_id       OUT offices.id%TYPE,
+    in_office_code      IN  offices.code%TYPE,
+    in_office_name      IN  offices.name%TYPE,
+    in_country_code     IN  countries.code_2%TYPE,
+    in_city_code        IN  cities.code%TYPE,
+    in_address          IN  addresses.address%TYPE,
+    in_phone            IN  offices.phone%TYPE,
+    in_fax              IN  offices.fax%TYPE,
+	in_create_by        IN  users.id%TYPE,
+	in_owner_id         IN  businesses.id%TYPE
 )
 AS $$
 DECLARE
 	v_cnt    	    INT;
-    v_office_id     INT;
     v_address_id    addresses.id%TYPE;
 	v_new_value	    admin_history.new_value%TYPE;
 BEGIN
@@ -111,7 +111,7 @@ BEGIN
         in_fax,
         in_create_by,
         in_owner_id
-    ) RETURNING id INTO v_office_id;
+    ) RETURNING id INTO out_office_id;
 
 	SELECT
 		'Code : ' 		|| UPPER(o.code) || CHR(10) ||
@@ -144,7 +144,7 @@ BEGIN
             a.id = o.address_id
             AND a.status = 1
 	WHERE
-		o.id = v_office_id
+		o.id = out_office_id
         AND o.status = 1
         AND o.owner_id = in_owner_id;
 
