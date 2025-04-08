@@ -69,7 +69,7 @@ class BusinessManagementController extends XController
     {
         $bm = new BusinessManagement();
 		$bm->db = $this->setDb();
-        $bm->Id = $this->getParam('businessId');
+        $bm->businessId = $this->getParam('businessId');
         $this->setPaginationParam($bm);
 
 		$result  = $bm->getBusinessDetailById();
@@ -114,7 +114,7 @@ class BusinessManagementController extends XController
     public function actionUpdateBusiness()
     {
         $bm = new BusinessManagement();
-        $bm->Id = $this->getParam('businessId');
+        $bm->businessId = $this->getParam('businessId');
         $bm->businessName = $this->getParam('businessName');
         $bm->businessDomain = $this->getParam('businessDomain');
         $bm->scenario = 'update-business-management';
@@ -132,13 +132,81 @@ class BusinessManagementController extends XController
         return $this->rulesValidation($bm->errors);
     }
 
+    public function actionUpdateBusinessAdmin()
+    {
+        $bm = new BusinessManagement();
+        $bm->businessAdminId = $this->getParam('businessAdminId');
+        $bm->businessUserFirstName = $this->getParam('businessUserFirstName');
+        $bm->businessUserLastName = $this->getParam('businessUserLastName');
+        $bm->businessUserGender = $this->getParam('businessUserGender');
+        $bm->businessUserEmail = $this->getParam('businessUserEmail');
+        $bm->businessUserBirthdate = $this->getParam('businessUserBirthdate');
+        $bm->businessUserPhone = $this->getParam('businessUserPhone');
+        $bm->scenario = 'update-business-admin';
+
+        if ($bm->validate())
+        {
+            $bm->db = $this->setDb();
+            $this->beginTx();
+            $result = $bm->updateBusinessAdmin();
+            $this->validateBasicTx($result);
+
+            return $this->jsonEncode($result);
+        }
+
+        return $this->rulesValidation($bm->errors);
+    }
+
+    
+    public function actionUpdateBusinessOffice()
+    {
+        $bm = new BusinessManagement();
+        $bm->businessOfficeId = $this->getParam('businessOfficeId');
+        $bm->businessOfficeCode = $this->getParam('businessOfficeCode');
+        $bm->businessOfficeName = $this->getParam('businessOfficeName');
+        $bm->businessOfficeCountry = $this->getParam('businessOfficeCountry');
+        $bm->businessOfficeCity = $this->getParam('businessOfficeCity');
+        $bm->businessOfficeAddress = $this->getParam('businessOfficeAddress');
+        $bm->businessOfficePhone = $this->getParam('businessOfficePhone');
+        $bm->businessOfficeFax = $this->getParam('businessOfficeFax');
+        $bm->businessId = $this->getParam('businessId');
+        $bm->scenario = 'update-business-office';
+
+        if ($bm->validate())
+        {
+            $bm->db = $this->setDb();
+            $this->beginTx();
+            $result = $bm->updateBusinessOffice();
+            $this->validateBasicTx($result);
+
+            return $this->jsonEncode($result);
+        }
+
+        return $this->rulesValidation($bm->errors);
+    }
+
     public function actionUpdateBusinessApps()
     {
 
     }
 
-    public function actionUpdateGlobalVariables()
+    public function actionUpdateBusinessGlobalVariables()
     {
-        
+        $bm = new BusinessManagement();
+        $bm->businessId = $this->getParam('businessId');
+        $bm->globalVariables = $this->getParam('globalVariables');
+        $bm->scenario = 'update-business-global-variables';
+
+        if ($bm->validate())
+        {
+            $bm->db = $this->setDb();
+            $this->beginTx();
+            $result = $bm->updateGlobalVariables();
+            $this->validateBasicTx($result);
+
+            return $this->jsonEncode($result);
+        }
+
+        return $this->rulesValidation($bm->errors);
     }
 }

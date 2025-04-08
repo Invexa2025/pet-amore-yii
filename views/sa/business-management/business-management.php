@@ -111,7 +111,7 @@
 								<label class="col-control-label col-sm-4" for=""><?= Yii::t('app', 'Birthdate') ?></label>
 								<div class="col-sm-8">
 									<div class="input-group">
-										<input name="inputBirthdate" id="inputBirthdate" type="text" class="form-control form-control-sm date" placeholder="<?= Yii::t('app', 'Birthate') ?>" maxlength="10" data-parsley-maxlength="10" data-parsley-errors-container="#errBirthdate">
+										<input name="inputBirthdate" id="inputBirthdate" type="text" class="datetime form-control form-control-sm" placeholder="<?= Yii::t('app', 'Birthate') ?>" maxlength="10" data-parsley-maxlength="10" data-parsley-errors-container="#errBirthdate">
 									</div>
 									<div class="help-block text-danger" id="errBirthdate"></div>
 								</div>
@@ -261,6 +261,8 @@
 	var _action = '';
 	var _temporaryData = [];
 	var _businessId;
+	var _businessAdminId;
+	var _businessOfficeId;
 	var _arrTab = ['businessDetailTab', 'adminDetailTab', 'officeDetailTab', 'appDetailTab', 'gvDetailTab'];
 
     var _tblBusinessList = {
@@ -286,16 +288,16 @@
 		},
 		queryParams     : function(p)
 		{
-			if (!_isAdvanceSearch)
-			{
-				p.search = $('#__txtGlobalSearch__').val();
-			}
-			else if (_isAdvanceSearch)
-			{
-				p.search = [$('#inputSearchBusinessName').val(), $('#inputSearchBusinessDomain').val(), $('#inputSearchAdminPhone').val(), $('#inputSearchAdminUserId').val(), $('#inputSearchAdminName').val()];
-			}
+			// if (!_isAdvanceSearch)
+			// {
+			// 	p.search = $('#__txtGlobalSearch__').val();
+			// }
+			// else if (_isAdvanceSearch)
+			// {
+			// 	p.search = [$('#inputSearchBusinessName').val(), $('#inputSearchBusinessDomain').val(), $('#inputSearchAdminPhone').val(), $('#inputSearchAdminUserId').val(), $('#inputSearchAdminName').val()];
+			// }
 
-			return p;	
+			return p;
 		},
 		formatNoMatches	: function()
 		{
@@ -304,6 +306,13 @@
 	};
 
     $(function(){
+		// Initialization of class
+        $('.datetime').datetimepicker({
+            format: 'DD/MM/YYYY',
+            useCurrent: 'day',
+            minDate: moment()
+        });
+
         $('#tblBusinessList').bootstrapTableWrapper(_tblBusinessList);
 		generateGlobalSearchAdminList();
 		generateCountryList();
@@ -455,10 +464,7 @@
 
 		$('#formBusinessDetailData').submit(function(e){
 			e.preventDefault();
-
-			if (_action == 'edit') {
-                updateBusinessDetail();
-			}
+			updateBusinessDetail();
 		});
 
 		// Form Admin Detail
@@ -474,10 +480,7 @@
 
 		$('#formAdminDetailData').submit(function(e){
 			e.preventDefault();
-
-			if (_action == 'edit') {
-                
-			}
+			updateBusinessAdmin()
 		});
 
 		// Form Office Detail
@@ -493,11 +496,13 @@
 
 		$('#formOfficeDetailData').submit(function(e){
 			e.preventDefault();
-			insertBusiness();
-
+			
 			if (_action == 'edit') {
-                
+				updateBusinessOffice();
+				return;
 			}
+			
+			insertBusiness();
 		});
 		
 		// Form Business Apps
@@ -914,6 +919,25 @@
 		globalVariableForm.append(globalVariableFormButtons);
 	}
 
+	function getGlobalVariableData() {
+		let _globalVariableData = [];
+
+		$('.gv-item-wrapper .form-group').each(function(idx, el) {
+			let varName = $(this).find('label[id^="inputVarName"]').text();
+			let varValue = $(this).find('input[id^="inputVarValue"]').val();
+			let varNumber = $(this).find('input[id^="inputVarNumber"]').val();
+
+			_globalVariableData.push({
+				var_name: varName,
+				var_value: varValue,
+				var_number: varNumber
+			});
+		});
+
+		return _globalVariableData;
+	}
+
+
 
 	function getBusinessDetail(id) {
 		$.ajax({
@@ -928,6 +952,8 @@
 			{
 				_temporaryData = $.parseJSON(response);
 				_businessId = _temporaryData.business_id;
+				_businessAdminId = _temporaryData.admin_id;
+				_businessOfficeId = _temporaryData.office_id;
 
 				$('#modalBusinessTitle').html('<?= Yii::t('app', 'Edit Business Management') ?>');
 				setBusinessModal();
@@ -1099,20 +1125,20 @@
 					action: function(modalWrapper, button, buttonData, originalEvent) 
 					{
 						var data = {
-							'businessUserId' : $('#inputUserId').val(),
+							'businessAdminId': _businessAdminId,
 							'businessUserFirstName'	: $('#inputFirstName').val(),
 							'businessUserLastName'	: $('#inputLastName').val(),
 							'businessUserGender' : $('#inputGender option:selected').val(),
 							'businessUserBirthdate'	: $('#inputBirthdate').val(),
 							'businessUserEmail'	: $('#inputEmail').val(),
-							'businessUserPhone'	: $('#inputPhone').val(),
+							'businessUserPhone'	: $('#inputPhone').val()
 						}
 
 						$.ajax({
 							type : 'POST',
 							data : data,
 							dataType : 'JSON',
-							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/') ?>',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-business-admin') ?>',
 							success : function(response)
 							{
 								BootstrapModalWrapperFactory.alert({
@@ -1128,7 +1154,9 @@
 												modalWrapper.hide();
 
 												if (response.errNum == 0) {
-													
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
 												}
 											}
 										},
@@ -1165,6 +1193,8 @@
 					action: function(modalWrapper, button, buttonData, originalEvent) 
 					{
 						var data = {
+							'businessId': _businessId,
+							'businessOfficeId': _businessOfficeId,
 							'businessOfficeCode' : $('#inputOfficeCode').val(),
 							'businessOfficeName' : $('#inputOfficeName').val(),
 							'businessOfficeCountry' : $('#inputOfficeCountry option:selected').val(),
@@ -1178,7 +1208,7 @@
 							type : 'POST',
 							data : data,
 							dataType : 'JSON',
-							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/') ?>',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-business-office') ?>',
 							success : function(response)
 							{
 								BootstrapModalWrapperFactory.alert({
@@ -1194,7 +1224,9 @@
 												modalWrapper.hide();
 
 												if (response.errNum == 0) {
-													
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
 												}
 											}
 										},
@@ -1290,27 +1322,16 @@
 					cssClass: "btn btn-sm btn-primary",
 					action: function(modalWrapper, button, buttonData, originalEvent) 
 					{
-						let globalVariableData = [];
-
-						$('#formGvDetailTab .form-group').each(function () {
-							let varName = $(this).find('label').text().trim();
-							let varValue = $(this).find('input[type="text"]').eq(0).val();
-							let varNumber = $(this).find('input[type="text"]').eq(1).val();
-
-							globalVariableData.push({
-								var_name: varName,
-								var_value: varValue,
-								var_number: varNumber
-							});
-						});
+						let globalVariableDataJson = JSON.stringify(getGlobalVariableData());
 
 						$.ajax({
 							type : 'POST',
 							data : {
-								'globalVariables': globalVariableData
+								'globalVariables': globalVariableDataJson,
+								'businessId': _businessId
 							},
 							dataType : 'JSON',
-							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-global-variables') ?>',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-business-global-variables') ?>',
 							success : function(response)
 							{
 								BootstrapModalWrapperFactory.alert({
@@ -1326,7 +1347,9 @@
 												modalWrapper.hide();
 
 												if (response.errNum == 0) {
-													
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
 												}
 											}
 										},

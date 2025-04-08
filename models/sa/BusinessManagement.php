@@ -8,13 +8,14 @@ use app\extensions\XModel;
 
 class BusinessManagement extends XModel
 {
-    public $Id;
+    public $businessId;
 
 	// Business Detail
 	public $businessName;
 	public $businessDomain;
 
 	// Business Admin
+	public $businessAdminId; // business admin increment id
 	public $businessUserId;
 	public $businessUserFirstName;
 	public $businessUserLastName;
@@ -24,6 +25,7 @@ class BusinessManagement extends XModel
 	public $businessUserPhone;
 
 	// Business Office
+	public $businessOfficeId;
 	public $businessOfficeCode;
 	public $businessOfficeName;
 	public $businessOfficeCountry;
@@ -38,21 +40,26 @@ class BusinessManagement extends XModel
 	// Global Variables
 	public $globalVariables;
 
-    public function attributeLabels()
-    {
-        return [
-            ['Id', 'required', 'on' => ['get-business-detail']]
-        ];
-    }
-
     public function rules()
 	{
 		return [
+			// Get business detail
+			['businessId', 'required', 'on' => ['get-business-detail']], 
+
 			// Insert business management
 			[['businessName', 'businessDomain', 'businessUserId', 'businessUserFirstName', 'businessUserLastName', 'businessUserGender', 'businessUserBirthdate', 'businessUserEmail', 'businessUserPhone', 'businessOfficeName', 'businessOfficeCode', 'businessOfficeCountry', 'businessOfficeCity', 'businessOfficeAddress', 'businessOfficePhone', 'businessOfficeFax'], 'required', 'on' => ['insert-business-management']],
 			
 			// Update business management
-			[['Id', 'businessName', 'businessDomain'], 'required', 'on' => ['update-business-management']]
+			[['businessId', 'businessName', 'businessDomain'], 'required', 'on' => ['update-business-management']],
+
+			// Update business admin
+			[['businessAdminId', 'businessUserFirstName', 'businessUserLastName', 'businessUserGender', 'businessUserBirthdate', 'businessUserEmail', 'businessUserPhone'], 'required', 'on' => ['update-business-admin']],
+
+			// Update business office
+			[['businessId', 'businessOfficeName', 'businessOfficeCode', 'businessOfficeCountry', 'businessOfficeCity', 'businessOfficeAddress', 'businessOfficePhone', 'businessOfficeFax'], 'required', 'on' => ['update-business-office']],
+			
+			// Update business global variables
+			[['businessId', 'globalVariables'], 'required', 'on' => ['update-business-global-variables']],
 		];
 	}
 
@@ -148,6 +155,7 @@ class BusinessManagement extends XModel
 				b.id business_id,
                 b.name business_name,
                 b.domain business_domain,
+				u.id admin_id,
                 u.user_id,
                 b.status business_status,
 				u.first_name,
@@ -179,7 +187,7 @@ class BusinessManagement extends XModel
 		";
 
 		$st = $this->db->createCommand($sql);
-		$st->bindParam(':Id', $this->Id);
+		$st->bindParam(':Id', $this->businessId);
 		// $this->dd($st->getRawSql());
 		$result = $st->queryOne();
 
@@ -260,7 +268,87 @@ class BusinessManagement extends XModel
 		$st->bindParam(':businessName', $this->businessName);
 		$st->bindParam(':businessDomain', $this->businessDomain);
 		$st->bindParam(':userUid', $this->userUid);
-		$this->dd($st->getRawSql());
+		// $this->dd($st->getRawSql());
+		$result = $st->queryOne();
+
+		return [
+			'errNum' => $result['out_num'], 
+			'errStr' => $result['out_str']
+		];
+	}
+
+	public function updateBusinessAdmin()
+	{
+		$sql = "
+			SELECT
+				*
+			FROM
+				sp_user_admin_update
+				(
+					in_id			=> :businessAdminId,
+					in_first_name   => :businessUserFirstName,
+					in_last_name    => :businessUserLastName,
+					in_gender       => :businessUserGender,
+					in_birthdate    => :businessUserBirthdate,
+					in_email        => :businessUserEmail,
+					in_phone        => :businessUserPhone,
+					in_group		=> NULL,
+					in_office		=> NULL,
+					in_create_by	=> :userUid,
+					in_owner_id		=> NULL
+				)
+		";
+
+		$st = $this->db->createCommand($sql);
+		$st->bindParam(':businessAdminId', $this->businessAdminId);
+		$st->bindParam(':businessUserFirstName', $this->businessUserFirstName);
+		$st->bindParam(':businessUserLastName', $this->businessUserLastName);
+		$st->bindParam(':businessUserGender', $this->businessUserGender);
+		$st->bindParam(':businessUserBirthdate', $this->businessUserBirthdate);
+		$st->bindParam(':businessUserEmail', $this->businessUserEmail);
+		$st->bindParam(':businessUserPhone', $this->businessUserPhone);
+		$st->bindParam(':userUid', $this->userUid);
+		$result = $st->queryOne();
+
+		return [
+			'errNum' => $result['out_num'], 
+			'errStr' => $result['out_str']
+		];
+	}
+
+	public function updateBusinessOffice()
+	{
+		$sql = "
+			SELECT
+				*
+			FROM
+				sp_office_update
+				(
+					in_office_id		=> :businessOfficeId, 			
+					in_office_code      => :businessOfficeCode,
+					in_office_name      => :businessOfficeName,
+					in_country_code   	=> :businessOfficeCountry,
+					in_city_code      	=> :businessOfficeCity,
+					in_address   		=> :businessOfficeAddress,
+					in_phone     		=> :businessOfficePhone,
+					in_fax       		=> :businessOfficeFax,
+					in_create_by		=> :userUid,
+					in_owner_id			=> :businessId
+				)
+		";
+
+		$st = $this->db->createCommand($sql);
+		$st->bindParam(':businessId', $this->businessId);
+		$st->bindParam(':businessOfficeId', $this->businessOfficeId);
+		$st->bindParam(':businessOfficeCode', $this->businessOfficeCode);
+		$st->bindParam(':businessOfficeName', $this->businessOfficeName);
+		$st->bindParam(':businessOfficeAddress', $this->businessOfficeAddress);
+		$st->bindParam(':businessOfficeCountry', $this->businessOfficeCountry);
+		$st->bindParam(':businessOfficeCity', $this->businessOfficeCity);
+		$st->bindParam(':businessOfficePhone', $this->businessOfficePhone);
+		$st->bindParam(':businessOfficeFax', $this->businessOfficeFax);
+		$st->bindParam(':userUid', $this->userUid);
+		// $this->dd($st->getRawSql());
 		$result = $st->queryOne();
 
 		return [
@@ -295,17 +383,23 @@ class BusinessManagement extends XModel
 			SELECT 
 				*
 			FROM
-				sp_update_business_global_variables
+				sp_business_global_variables_insert
 				(
-				
-				
+					in_contact_id		=> :userUid,
+					in_owner_id			=> :businessId,
+					in_global_variables	=> :globalVariables
 				)
 		";
 
 		$st = $this->db->createCommand($sql);
-		$st->bindParam(':businessApps', $this->businessApps);
+		$st->bindParam(':userUid', $this->userUid);
+		$st->bindParam(':businessId', $this->businessId);
+		$st->bindParam(':globalVariables', $this->globalVariables);
 		$result = $st->queryOne();
 
-		return $result;
+		return [
+			'errNum' => $result['out_num'],
+			'errStr' => $result['out_str']
+		];
 	}
 }
