@@ -162,3 +162,8 @@ nav.main-menu li.active>a,
 input::placeholder {
   text-transform: none !important;
 }
+
+/* BOOTSTRAP TAB */
+.tab-pane{
+  padding: 10px 0;
+}

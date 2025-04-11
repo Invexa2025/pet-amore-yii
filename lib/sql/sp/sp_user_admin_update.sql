@@ -74,8 +74,8 @@ BEGIN
         birthdate =in_birthdate,
         email = UPPER(in_email),
         phone =in_phone,
-        group_id = STRING_TO_ARRAY(in_group, ',')::INT[],
-        office_id = in_office,
+        group_id = COALESCE(group_id, STRING_TO_ARRAY(in_group, ',')::INT[]),
+        office_id = COALESCE(in_office, office_id),
         update_by = in_create_by,
         update_time = NOW()
     WHERE

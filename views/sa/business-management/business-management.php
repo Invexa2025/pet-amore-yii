@@ -29,7 +29,7 @@
 
 <!-- Modal Businesses -->
 <div class="modal fade" id="modalBusiness" aria-hidden="true" aria-labelledby="modalBusinessTitle" data-backdrop="static">
-	<div class="modal-dialog modal-dialog-centered modal-lg">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title font-weight-bold" id="modalBusinessTitle"><?= Yii::t('app', 'Add Business Management') ?></h5>
@@ -72,28 +72,6 @@
 									<input id="inputBusinessDomain" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Domain') ?>" maxlength="128" data-parsley-required data-parsley-maxlength="128" data-parsley-pattern="[a-zA-Z0-9 ]+" data-parsley-pattern-message="<?= Yii::t('app', 'This value should be alphanumeric.') ?>">
 								</div>
 							</div>
-							<div class="form-group row required">
-								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Address') ?></label>
-								<div class="col-sm-8">
-									<textarea id="inputBusinessAddress" name="inputBusinessAddress" rows="5" class="form-control form-control-sm no-resize" placeholder="<?= Yii::t('app', 'Address') ?>" maxlength="1028" data-parsley-required data-parsley-maxlength="1028"></textarea>
-								</div>
-							</div>
-							<div class="form-group row required">
-								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Country') ?></label>
-								<div class="col-sm-8">
-                                    <select id="inputBusinessCountry" name="inputBusinessCountry" class="form-control form-control-sm selectpicker" title="<?= Yii::t('app', 'Select Country') ?>" data-actions-box="true" data-size="6" data-live-search="true" data-parsley-required data-parsley-errors-container="#errBusinessCountry">
-									</select>
-									<div class="help-block text-danger" id="errBusinessCountry"></div>
-								</div>
-							</div>
-							<div class="form-group row required">
-								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'City') ?></label>
-								<div class="col-sm-8">
-									<select id="inputBusinessCity" name="inputBusinessCity" class="form-control form-control-sm selectpicker" title="<?= Yii::t('app', 'Select City') ?>" data-actions-box="true" data-size="6" data-live-search="true" data-parsley-required data-parsley-errors-container="#errBusinessCity">
-									</select>
-									<div class="help-block text-danger" id="errBusinessCity"></div>
-								</div>
-							</div>
 							<div class="modal-footer pb-0 pr-0">
 								<button type="button" class="btn btn-sm btn-secondary btnReset" onclick="resetBusinessDetailForm('formBusinessDetailData');"><i class="bi bi-arrow-counterclockwise"></i> <?= Yii::t('app', 'Reset') ?></button>
 								<button class="btn btn-sm btn-primary btnNext" form="formBusinessDetailData" type="submit"><?= Yii::t('app', 'Next') ?> <i class="bi bi-arrow-right"></i></button>
@@ -133,7 +111,7 @@
 								<label class="col-control-label col-sm-4" for=""><?= Yii::t('app', 'Birthdate') ?></label>
 								<div class="col-sm-8">
 									<div class="input-group">
-										<input name="inputBirthdate" id="inputBirthdate" type="text" class="form-control form-control-sm date" placeholder="<?= Yii::t('app', 'Birthate') ?>" maxlength="10" data-parsley-maxlength="10" data-parsley-errors-container="#errBirthdate">
+										<input name="inputBirthdate" id="inputBirthdate" type="text" class="datetime form-control form-control-sm" placeholder="<?= Yii::t('app', 'Birthate') ?>" maxlength="10" data-parsley-maxlength="10" data-parsley-errors-container="#errBirthdate">
 									</div>
 									<div class="help-block text-danger" id="errBirthdate"></div>
 								</div>
@@ -164,19 +142,19 @@
 							<div class="form-group row required">
 								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Office Code') ?></label>
 								<div class="col-sm-8">
-									<input id="inputAddOfficeCode" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Office Code') ?>" maxlength="60" data-parsley-required data-parsley-maxlength="60">
+									<input id="inputOfficeCode" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Office Code') ?>" maxlength="60" data-parsley-required data-parsley-maxlength="60">
 								</div>
 							</div>
 							<div class="form-group row required">
 								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Office Name') ?></label>
 								<div class="col-sm-8">
-									<input id="inputAddOfficeName" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Office Name') ?>" maxlength="120" data-parsley-required data-parsley-maxlength="120" data-parsley-pattern="[a-zA-Z0-9 ]+" data-parsley-pattern-message="<?= Yii::t('app', 'This value should be alphanumeric.') ?>">
+									<input id="inputOfficeName" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Office Name') ?>" maxlength="120" data-parsley-required data-parsley-maxlength="120" data-parsley-pattern="[a-zA-Z0-9 ]+" data-parsley-pattern-message="<?= Yii::t('app', 'This value should be alphanumeric.') ?>">
 								</div>
 							</div>
 							<div class="form-group row required">
 								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Country') ?></label>
 								<div class="col-sm-8">
-									<select id="inputAddCountry" name="inputAddCountry" class="form-control form-control-sm selectpicker" data-actions-box="true" data-size="6" data-live-search="true" title="<?= Yii::t('app', 'Select Country') ?>" data-parsley-required data-parsley-errors-container="#errAddCountry">
+									<select id="inputOfficeCountry" name="inputAddCountry" class="form-control form-control-sm selectpicker" data-actions-box="true" data-size="6" data-live-search="true" title="<?= Yii::t('app', 'Select Country') ?>" data-parsley-required data-parsley-errors-container="#errAddCountry">
 									</select>
 									<div class="help-block text-danger" id="errAddCountry"></div>
 								</div>
@@ -184,7 +162,7 @@
 							<div class="form-group row required">
 								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'City') ?></label>
 								<div class="col-sm-8">
-									<select id="inputAddCity" name="inputAddCity" class="form-control form-control-sm selectpicker" data-actions-box="true" data-size="6" data-live-search="true" title="<?= Yii::t('app', 'Select City') ?>" data-parsley-required data-parsley-errors-container="#errAddCity">
+									<select id="inputOfficeCity" name="inputAddCity" class="form-control form-control-sm selectpicker" data-actions-box="true" data-size="6" data-live-search="true" title="<?= Yii::t('app', 'Select City') ?>" data-parsley-required data-parsley-errors-container="#errAddCity">
 									</select>
 									<div class="help-block text-danger" id="errAddCity"></div>
 								</div>
@@ -192,19 +170,19 @@
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Address') ?></label>
 								<div class="col-sm-8">
-									<textarea id="inputAddAddress" name="inputAddAddress" rows="5" class="form-control form-control-sm no-resize" placeholder="<?= Yii::t('app', 'Address') ?>" maxlength="1028" data-parsley-maxlength="1028"></textarea>
+									<textarea id="inputOfficeAddress" name="inputAddAddress" rows="5" class="form-control form-control-sm no-resize" placeholder="<?= Yii::t('app', 'Address') ?>" maxlength="1028" data-parsley-maxlength="1028"></textarea>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Phone') ?></label>
 								<div class="col-sm-8">
-									<input id="inputAddPhone" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Phone') ?>" maxlength="40" data-parsley-maxlength="40" ?>
+									<input id="inputOfficePhone" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Phone') ?>" maxlength="40" data-parsley-maxlength="40" ?>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Fax') ?></label>
 								<div class="col-sm-8">
-									<input id="inputAddFax" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Fax') ?>" maxlength="20" data-parsley-maxlength="20" ?>
+									<input id="inputOfficeFax" type="text" class="form-control form-control-sm" placeholder="<?= Yii::t('app', 'Fax') ?>" maxlength="20" data-parsley-maxlength="20" ?>
 								</div>
 							</div>
 							<div class="modal-footer pb-0 pr-0">
@@ -217,11 +195,32 @@
 					<!-- App Detail Tab -->
 					<div role="tabpanel" class="tab-pane fade" id="appDetailTab">
 						<form id="formAppDetailTab" class="form" autocomplete="off">
+							<!-- Business Apps -->
+							<div class="form-group row required">
+								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'App Selection') ?></label>
+								<div class="col-sm-8" id="divInputBusinessApps">
+									<select id="inputBusinessApps" name="inputBusinessApps" class="form-control form-control-sm selectpicker" data-actions-box="true" data-selected-text-format="count" multiple data-size="6" data-live-search="true" title="<?= Yii::t('app', 'Select App') ?>" data-parsley-required data-parsley-errors-container="#errBusinessApps">
+									</select>
+									<div class="help-block text-danger" id="errBusinessApps"></div>
+								</div>
+							</div>
+							<!-- Business Apps Preview -->
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label"><?= Yii::t('app', 'Summary') ?></label>
+								<div class="col-sm-8">
+									<textarea id="groupBusinessAppsSummary" rows="5" class="form-control form-control-sm no-resize" disabled></textarea>
+								</div>
+							</div>
+							<div class="modal-footer pb-0 pr-0">
+								<button type="button" class="btn btn-sm btn-default btnReset" onclick="resetBusinessDetailForm('formAppDetailTab');"><i class="bi bi-arrow-counterclockwise"></i> <?= Yii::t('app', 'Reset') ?></button>
+								<button class="btn btn-sm btn-primary btnSubmit" form="formAppDetailTab" type="submit"><i class="bi bi-check"></i> <?= Yii::t('app', 'Submit') ?></button>
+							</div>    
 						</form>
 					</div>
 					<!-- Global Variables Tab -->
 					<div role="tabpanel" class="tab-pane fade" id="gvDetailTab">
 						<form id="formGvDetailTab" class="form" autocomplete="off">
+							<!-- Global Variable Input append here -->
 						</form>
 					</div>
 				</div>
@@ -229,15 +228,41 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.gv-group-title-wrapper{
+		border-bottom: 1px dashed var(--prussian-blue);
+		padding: 5px 0;
+	}
+	
+	.gv-group-title{
+		color: var(--prussian-blue);
+		font-size: 16px;
+	}
+
+	.gv-item-wrapper{
+		padding: 10px 0;
+	}
+</style>
+
 <script type="text/javascript">
     var _businessList = <?= $businessList; ?>;
 	var _countryList = <?= $countryList; ?>;
 	var _cityList = <?= $cityList; ?>;
 	var _groupList = <?= $groupList; ?>;
+	var _appList = <?= $appList ?>;
+	var _globalVariableList = <?= $globalVariableList ?>;	
 	var _officeList = <?= $officeList; ?>;
 	var _currActiveTab = 'liBusinessDetailTab';
+	var _arrPrivList = [];
+	var _arrSelected = [];
+	var _selectedApp = [];
+	var _clickedApp = '';
 	var _action = '';
 	var _temporaryData = [];
+	var _businessId;
+	var _businessAdminId;
+	var _businessOfficeId;
 	var _arrTab = ['businessDetailTab', 'adminDetailTab', 'officeDetailTab', 'appDetailTab', 'gvDetailTab'];
 
     var _tblBusinessList = {
@@ -263,16 +288,16 @@
 		},
 		queryParams     : function(p)
 		{
-			if (!_isAdvanceSearch)
-			{
-				p.search = $('#__txtGlobalSearch__').val();
-			}
-			else if (_isAdvanceSearch)
-			{
-				p.search = [$('#inputSearchBusinessName').val(), $('#inputSearchBusinessDomain').val(), $('#inputSearchAdminPhone').val(), $('#inputSearchAdminUserId').val(), $('#inputSearchAdminName').val()];
-			}
+			// if (!_isAdvanceSearch)
+			// {
+			// 	p.search = $('#__txtGlobalSearch__').val();
+			// }
+			// else if (_isAdvanceSearch)
+			// {
+			// 	p.search = [$('#inputSearchBusinessName').val(), $('#inputSearchBusinessDomain').val(), $('#inputSearchAdminPhone').val(), $('#inputSearchAdminUserId').val(), $('#inputSearchAdminName').val()];
+			// }
 
-			return p;	
+			return p;
 		},
 		formatNoMatches	: function()
 		{
@@ -281,15 +306,25 @@
 	};
 
     $(function(){
+		// Initialization of class
+        $('.datetime').datetimepicker({
+            format: 'DD/MM/YYYY',
+            useCurrent: 'day',
+            minDate: moment()
+        });
+
         $('#tblBusinessList').bootstrapTableWrapper(_tblBusinessList);
 		generateGlobalSearchAdminList();
 		generateCountryList();
 		generateGroupList();
 		generateOfficeList();
+		generateGroupApps();
+		generateGlobalVariableData();
 
 		$('#btnAddBusinessMember').off('click').on('click', function(){
 			_action = 'add';
 			setBusinessModal();
+			resetBusinessDetailForm();
 			$('#modalBusinessTitle').html('<?= Yii::t('app', 'Add Business Management') ?>');
 			$('#modalBusiness').modal('show');
 		});
@@ -340,6 +375,82 @@
 			}
 		});
 
+		/**
+		 * BUSINESS APPS EVENT
+		 */
+		$('#inputBusinessApps, #inputSearchApps').on('changed.bs.select', function (event, clickedIndex, newValue, oldValue) 
+		{
+			_clickedApp = '';
+
+			if (typeof newValue != 'undefined')
+			{
+				// Push clicked item to array
+				_clickedApp = $(this).find('option').eq(clickedIndex).val();
+
+				_arrSelected = [];
+
+				if (_clickedApp)
+				{
+					var element = $(this).find('option').eq(clickedIndex).val();
+					_arrSelected.push(_clickedApp);
+
+					findChildren(_clickedApp);
+
+					for (var i = 0; i < _appList.length; i++)
+					{
+						if (_appList[i]['app_code'] == _clickedApp && newValue)
+						{
+							findParents(i);
+						}
+					}
+
+					if (newValue)
+					{
+						_selectedApp = _selectedApp.concat(_arrSelected);
+						_selectedApp = $.grep(_selectedApp, function(v, k)
+						{
+							return $.inArray(v ,_selectedApp) === k;
+						});
+
+						$('#' + this.id).val(_selectedApp);
+						$('#' + this.id).selectpicker('refresh');
+					}
+					else
+					{
+						_arrSelected = _selectedApp.filter(function(el) 
+						{
+							return _arrSelected.indexOf(el) == -1;
+						});
+
+						$('#' + this.id).val(_arrSelected);
+						$('#' + this.id).selectpicker('refresh');
+						_selectedApp = _arrSelected;
+						_arrSelected = [];
+					}
+
+					generateSummaryText();
+				}
+			}
+		});
+
+		$('.bs-select-all').on('click', function() 
+		{
+			_selectedApp = _arrPrivList;
+			_arrSelected = _selectedApp;
+			$('#inputApps, #inputSearchApps').val(_arrSelected);
+			$('#inputApps, #inputSearchApps').selectpicker('refresh');
+			generateSummaryText();
+		});
+
+		$('.bs-deselect-all').on('click', function() 
+		{
+			_selectedApp = [];
+			_arrSelected = [];
+			$('#inputApps, #inputSearchApps').val(_arrSelected);
+			$('#inputApps, #inputSearchApps').selectpicker('refresh');
+			generateSummaryText();
+		});
+
 		// Form Business Detail
 		$('#formBusinessDetailData').parsley({
 			errorsWrapper: '<span class="form-text text-danger"></span>',
@@ -353,10 +464,7 @@
 
 		$('#formBusinessDetailData').submit(function(e){
 			e.preventDefault();
-
-			if (_action == 'edit') {
-                
-			}
+			updateBusinessDetail();
 		});
 
 		// Form Admin Detail
@@ -372,10 +480,7 @@
 
 		$('#formAdminDetailData').submit(function(e){
 			e.preventDefault();
-
-			if (_action == 'edit') {
-                
-			}
+			updateBusinessAdmin()
 		});
 
 		// Form Office Detail
@@ -391,12 +496,96 @@
 
 		$('#formOfficeDetailData').submit(function(e){
 			e.preventDefault();
-
+			
 			if (_action == 'edit') {
-                
+				updateBusinessOffice();
+				return;
 			}
+			
+			insertBusiness();
+		});
+		
+		// Form Business Apps
+		$('#formAppDetailTab').parsley({
+			errorClass: 'is-invalid text-danger',
+			errorsWrapper: '<span class="form-text text-danger"></span>',
+			errorTemplate: '<span></span>',
+			trigger: 'change'
+		});
+
+        $('#formAppDetailTab input, #formAppDetailTab select').on('change keyup', function () {
+            $(this).parsley().validate();
+        });
+
+		$('#formAppDetailTab').submit(function(e){
+			e.preventDefault();
+
+		});
+		
+		// Form Global Variable
+		$('#formGvDetailTab').parsley({
+			errorClass: 'is-invalid text-danger',
+			errorsWrapper: '<span class="form-text text-danger"></span>',
+			errorTemplate: '<span></span>',
+			trigger: 'change'
+		});
+
+        $('#formGvDetailTab input, #formGvDetailTab select').on('change keyup', function () {
+            $(this).parsley().validate();
+        });
+
+		$('#formGvDetailTab').submit(function(e){
+			e.preventDefault();
+			updateGlobalVariables();
 		});
     });
+
+	/**
+	 * BUSINESS APPS HELPER FUNCTIONS
+	 */
+	function generateSummaryText() {
+		let cntParent = 0;
+		let summaryArr = [];
+
+		_appList.forEach((app, i) => {
+			if (!_selectedApp.includes(app.app_code)) return;
+
+			let indentLevel = (app.parent_code !== 0) ? app.parent_code.split('-').length - 1 : 0;
+			let desc = '&nbsp;'.repeat(indentLevel * 7);
+			
+			if (app.parent_code !== 0) {
+				summaryArr.push(`${desc}${app.name}`);
+			} else {
+				cntParent++;
+				summaryArr.push(`${cntParent}. &ensp;${app.name}`);
+			}
+		});		
+
+		$('#groupBusinessAppsSummary').html(summaryArr.join('\r\n'));
+		$('#divInputBusinessApps > .bootstrap-select.form-control').removeClass('is-invalid text-danger');
+	}
+
+
+	function findChildren(app) {
+		let children = _appList.filter(item => item.parent_code == app);
+		
+		for (let child of children) {
+			_arrSelected.push(child.app_code);
+			findChildren(child.app_code);
+		}
+	}
+
+	function findAppIndex(app) {
+		return _appList.findIndex(item => item.app_code == app);
+	}
+
+	function findParents(i) {
+		if (_appList[i] && _appList[i].parent_code != '0') {
+			_arrSelected.push(_appList[i].parent_code);
+			let parentIndex = findAppIndex(_appList[i].parent_code);
+			if (parentIndex !== -1) findParents(parentIndex);
+		}
+	}
 
 	function closeBusinessModal()
     {
@@ -404,13 +593,36 @@
 		resetBusinessDetailForm();
     }
 
+	function setBusinessModal() {
+		$('a[href="#businessDetailTab"]').click();
+		$('.btnSubmit').addClass('d-none');
+        $('.btnBack').removeClass('d-none');
+        $('.btnNext').removeClass('d-none');
+        $('.btnReset').removeClass('d-none');
+		$('.btnSubmit[form="formOfficeDetailData"]').removeClass('d-none');
+		$('#modalMainTabs').addClass('d-none');
+		
+		// Input fields
+		$('#inputUserId').prop('disabled', false);
+		$('#inputOfficeCode').prop('disabled', false);
+		$('#inputOfficeName').prop('disabled', false);
+
+
+		if (_action == 'edit')
+		{
+			$('.btnBack').addClass('d-none');
+			$('.btnNext').addClass('d-none');
+			$('.btnSubmit').removeClass('d-none');
+
+			// Input fields
+			$('#inputUserId').prop('disabled', true);
+			$('#inputOfficeCode').prop('disabled', true);
+			$('#inputOfficeName').prop('disabled', true);
+		}
+	}
+
 	function resetBusinessDetailForm(formId)
 	{
-		// if (_action == 'add') {
-		// 	generateCountryList();
-		// 	generateCityList('', '');
-		// }
-
         // Business Detail Form
 		if (formId == null || formId == 'formBusinessDetailData')
 		{
@@ -422,10 +634,6 @@
 				$('#modalMainTabs').removeClass('d-none');
 				$('#inputBusinessName').val(_temporaryData.business_name);
 				$('#inputBusinessDomain').val(_temporaryData.business_domain);
-				$('#inputBusinessAddress').val(_temporaryData.business_address);
-				$('#inputBusinessCountry').selectpicker('val', _temporaryData.business_country_code);
-				generateCityList(_temporaryData.business_country_code, 'business');
-				$('#inputBusinessCity').selectpicker('val', _temporaryData.business_city_code);
 			}
 		}
 
@@ -437,7 +645,13 @@
 
             if (_action == 'edit')
             {
-                
+                $('#inputUserId').val(_temporaryData.user_id);
+				$('#inputFirstName').val(_temporaryData.first_name);
+				$('#inputLastName').val(_temporaryData.last_name);
+				$('#inputGender').selectpicker('val', _temporaryData.gender);
+				$('#inputBirthdate').val(_temporaryData.birthdate);
+				$('#inputEmail').val(_temporaryData.admin_email);
+				$('#inputPhone').val(_temporaryData.admin_phone);
             }
 		}
         
@@ -449,8 +663,39 @@
 
             if (_action == 'edit')
             {
-                
+                $('#inputOfficeCode').val(_temporaryData.office_code);
+				$('#inputOfficeName').val(_temporaryData.office_name);
+				$('#inputOfficeCountry').selectpicker('val', _temporaryData.office_country_code).trigger('change');
+				$('#inputOfficeCity').selectpicker('val', _temporaryData.office_city_code);
+				$('#inputOfficeAddress').val(_temporaryData.office_address);
+				$('#inputOfficePhone').val(_temporaryData.office_phone);
+				$('#inputOfficeFax').val(_temporaryData.office_fax)
             }
+		}
+
+		// Business Apps form
+		if (formId == null || formId == 'formAppDetailTab')
+		{
+			$('#formAppDetailTab').trigger('reset');
+			$('#formAppDetailTab').parsley().reset();
+			_selectedApp = [];
+			_arrSelected = [];
+			$('#groupBusinessAppsSummary').html('');
+
+			if (_action == 'edit')
+			{
+
+			}
+		}
+
+		// Global Variables form
+		if (formId == null || formId == 'formGvDetailTab')
+		{
+			$('#formGvDetailTab').parsley().reset();
+			$('#formGvDetailTab input').each(function() {
+				let initialValue = $(this).attr('data-initial-value');
+				$(this).val(initialValue);
+			});
 		}
 
         $('.selectpicker').selectpicker('refresh');
@@ -477,16 +722,6 @@
 		});
 
 		$('#adminDetailTab .form-horizontal').html(html);
-	}
-
-	function setBusinessModal() {
-		$('a[href="#businessDetailTab"]').click();
-		$('.btnSubmit').addClass('d-none');
-        $('.btnBack').removeClass('d-none');
-        $('.btnNext').removeClass('d-none');
-        $('.btnReset').removeClass('d-none');
-		$('#modalMainTabs').addClass('d-none');
-		$('#inputAdminUserId').prop('disabled', true);
 	}
 
 	function searchBusinessList(flag) {
@@ -536,32 +771,21 @@
 	}
 
 	function generateCountryList() {
-    	const uniqueCountries = new Map();
+		const uniqueCountries = new Map();
 		_countryList.forEach(c => uniqueCountries.set(c.code_2, c));
 
-		const $inputBusinessCountry = $('#inputBusinessCountry');
 		const $inputOfficeCountry = $('#inputOfficeCountry');
 
 		uniqueCountries.forEach(c => {
 			const opt = `<option value="${c.code_2}">${c.name} (${c.code_2})</option>`;
-			$inputBusinessCountry.append(opt);
 			$inputOfficeCountry.append(opt);
 		});
-
-		if ($inputBusinessCountry.hasClass('selectpicker')) {
-			$inputBusinessCountry.selectpicker('refresh');
-		}
 
 		if ($inputOfficeCountry.hasClass('selectpicker')) {
 			$inputOfficeCountry.selectpicker('refresh');
 		}
 
 		// Event listener untuk mengupdate kota berdasarkan negara yang dipilih
-		$inputBusinessCountry.on('change', function() {
-			const selectedCountry = this.value;
-			generateCityList(selectedCountry, 'business');
-		});
-
 		$inputOfficeCountry.on('change', function() {
 			const selectedCountry = this.value;
 			generateCityList(selectedCountry, 'office');
@@ -571,11 +795,7 @@
 	function generateCityList(countryCode, targetType) {
 		let $inputCity;
 
-		if (targetType === 'business') {
-			$inputCity = $('#inputBusinessCity');
-		} else if (targetType === 'office') {
-			$inputCity = $('#inputOfficeCity');
-		}
+		$inputCity = $('#inputOfficeCity');
 		
 		$inputCity.empty();
 
@@ -611,6 +831,114 @@
         $('.selectpicker').selectpicker('refresh');
     }
 
+	function generateGroupApps() {
+		if (_appList.length === 0) {
+			$('#inputBusinessApps, #inputSearchApps').prop('title', 'No available App exists');
+		} else {
+			let options = [];
+			
+			_appList.forEach((app, i) => {
+				let indentLevel = (app['parent_code'] != 0) ? app['parent_code'].split('-').length - 1 : 0;
+				let indent = '&nbsp;'.repeat(indentLevel * 7);
+				let style = (app['parent_code'] == 0) ? 'font-weight-bold' : '';
+				
+				// Jika bukan root, tambahkan indentasi dan simbol ">"
+				let name = (app['parent_code'] != 0) ? `${indent}> ${app['name']}` : app['name'];
+				
+				options.push(`<option class="${style}" value="${app['app_code']}">${name}</option>`);
+				_arrPrivList.push(app['app_code']);
+			});
+
+			$('#inputBusinessApps, #inputSearchApps').append(options.join('')).selectpicker('refresh');
+		}
+	}
+
+	function generateGlobalVariableData() {
+		let groupedGlobalVariable = {};
+		let globalVariableForm = $('#formGvDetailTab');
+
+		// Clear previous content
+		globalVariableForm.html('');
+
+		_globalVariableList.forEach(item => {
+			if (!groupedGlobalVariable[item.var_group]) groupedGlobalVariable[item.var_group] = [];
+			groupedGlobalVariable[item.var_group].push(item);
+		});
+
+		// Loop grouped global variable data and inject into form
+		Object.keys(groupedGlobalVariable).forEach(group => {
+			let groupHtml = `
+				<div class="gv-wrapper">
+					<div class="gv-group-title-wrapper">
+						<h4 class="gv-group-title">${group}</h4>
+					</div>
+					<div class="gv-item-wrapper">
+			`;
+
+			groupedGlobalVariable[group].forEach((item, idx) => {
+				groupHtml += `
+					<div class="form-group row d-flex align-items-center">
+						<label class="col-sm-2 col-form-label" id="inputVarName${idx + 1}">${item.var_name}</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="inputVarValue${idx + 1}" maxlength="128" 
+								data-parsley-minlength="1" data-parsley-maxlength="128" data-parsley-pattern="[a-zA-Z0-9 ]+" 
+								data-parsley-pattern-message="<?= Yii::t('app', 'This value should be alphanumeric.') ?>"
+								value="${item.var_value || ''}" 
+								data-initial-value="${item.var_value || ''}">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="inputVarNumber${idx + 1}" maxlength="40" 
+								data-parsley-maxlength="40" data-parsley-pattern="[0-9]+" 
+								data-parsley-pattern-message="<?= Yii::t('app', 'This value should be numeric.') ?>"
+								value="${item.var_number || ''}" 
+								data-initial-value="${item.var_number || ''}">
+						</div>
+						<div class="col-sm-4">
+							<textarea rows="2" class="form-control form-control-sm no-resize" disabled>${item.var_desc || ''}</textarea>
+						</div>  
+					</div>
+				`;
+			});
+
+			groupHtml += `</div></div>`; // Close wrappers
+			globalVariableForm.append(groupHtml);
+		});
+
+		// Append form buttons
+		let globalVariableFormButtons = `
+			<div class="modal-footer pb-0 pr-0">
+				<button type="button" class="btn btn-sm btn-default btnReset" onclick="resetBusinessDetailForm('formGvDetailTab');">
+					<i class="bi bi-arrow-counterclockwise"></i> <?= Yii::t('app', 'Reset') ?>
+				</button>
+				<button class="btn btn-sm btn-primary btnSubmit" form="formGvDetailTab" type="submit">
+					<i class="bi bi-check"></i> <?= Yii::t('app', 'Submit') ?>
+				</button>
+			</div>   
+		`;
+
+		globalVariableForm.append(globalVariableFormButtons);
+	}
+
+	function getGlobalVariableData() {
+		let _globalVariableData = [];
+
+		$('.gv-item-wrapper .form-group').each(function(idx, el) {
+			let varName = $(this).find('label[id^="inputVarName"]').text();
+			let varValue = $(this).find('input[id^="inputVarValue"]').val();
+			let varNumber = $(this).find('input[id^="inputVarNumber"]').val();
+
+			_globalVariableData.push({
+				var_name: varName,
+				var_value: varValue,
+				var_number: varNumber
+			});
+		});
+
+		return _globalVariableData;
+	}
+
+
+
 	function getBusinessDetail(id) {
 		$.ajax({
 			type 	: 'POST',
@@ -622,13 +950,418 @@
 			},
 			success	: function(response)
 			{
-				console.log(response);
 				_temporaryData = $.parseJSON(response);
+				_businessId = _temporaryData.business_id;
+				_businessAdminId = _temporaryData.admin_id;
+				_businessOfficeId = _temporaryData.office_id;
 
 				$('#modalBusinessTitle').html('<?= Yii::t('app', 'Edit Business Management') ?>');
+				setBusinessModal();
 				resetBusinessDetailForm();
 				$('#modalBusiness').modal('show');
 			}
+		});
+	}
+
+	function insertBusiness()
+	{
+		BootstrapModalWrapperFactory.confirm({
+			title          : '<?= Yii::t('app', 'Confirm') ?>',
+			message        : '<?= Yii::t('app', 'Are you sure you want to create new business') ?>?',
+			closeByBackdrop: false,
+			buttons: [
+				{
+					label: '<?= Yii::t('app', 'No') ?>',
+					cssClass: "btn btn-sm btn-secondary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						modalWrapper.hide();
+					}
+				}, 
+				{
+					label: '<?= Yii::t('app', 'Yes') ?>',
+					cssClass: "btn btn-sm btn-primary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						var data = {
+							'businessName'	: $('#inputBusinessName').val(),
+							'businessDomain' : $('#inputBusinessDomain').val(),
+							'businessUserId' : $('#inputUserId').val(),
+							'businessUserFirstName'	: $('#inputFirstName').val(),
+							'businessUserLastName'	: $('#inputLastName').val(),
+							'businessUserGender' : $('#inputGender option:selected').val(),
+							'businessUserBirthdate'	: $('#inputBirthdate').val(),
+							'businessUserEmail'	: $('#inputEmail').val(),
+							'businessUserPhone'	: $('#inputPhone').val(),
+							'businessOfficeCode' : $('#inputOfficeCode').val(),
+							'businessOfficeName' : $('#inputOfficeName').val(),
+							'businessOfficeCountry' : $('#inputOfficeCountry option:selected').val(),
+							'businessOfficeCity' : $('#inputOfficeCity option:selected').val(),
+							'businessOfficeAddress' : $('#inputOfficeAddress').val(),
+							'businessOfficePhone' : $('#inputOfficePhone').val(),
+							'businessOfficeFax' : $('#inputOfficeFax').val()
+						}
+
+						$.ajax({
+							type : 'POST',
+							data : data,
+							dataType : 'JSON',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/insert-business') ?>',
+							success : function(response)
+							{
+								BootstrapModalWrapperFactory.alert({
+									title  : '<?= Yii::t('app', 'Message') ?>',
+									message: nl2br(msgConverter(response)),
+									closeByBackdrop: false,
+									buttons: [
+										{
+											label   : 'OK',
+											cssClass: 'btn btn-primary',
+											action  : function (modalWrapper, button, buttonData, originalEvent)
+											{
+												modalWrapper.hide();
+
+												if (response.errNum == 0) {
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
+												}
+											}
+										},
+									]
+								});
+							}
+						});
+						
+						modalWrapper.hide();
+					}
+				}
+			]
+		});
+	}
+
+	function updateBusinessDetail()
+	{
+		BootstrapModalWrapperFactory.confirm({
+			title          : '<?= Yii::t('app', 'Confirm') ?>',
+			message        : '<?= Yii::t('app', 'Are you sure you want to update business detail') ?>?',
+			closeByBackdrop: false,
+			buttons: [
+				{
+					label: '<?= Yii::t('app', 'No') ?>',
+					cssClass: "btn btn-sm btn-secondary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						modalWrapper.hide();
+					}
+				}, 
+				{
+					label: '<?= Yii::t('app', 'Yes') ?>',
+					cssClass: "btn btn-sm btn-primary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						var data = {
+							'businessId': _businessId,
+							'businessName'	: $('#inputBusinessName').val(),
+							'businessDomain' : $('#inputBusinessDomain').val(),
+						}
+
+						$.ajax({
+							type : 'POST',
+							data : data,
+							dataType : 'JSON',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-business') ?>',
+							success : function(response)
+							{
+								BootstrapModalWrapperFactory.alert({
+									title  : '<?= Yii::t('app', 'Message') ?>',
+									message: nl2br(msgConverter(response)),
+									closeByBackdrop: false,
+									buttons: [
+										{
+											label   : 'OK',
+											cssClass: 'btn btn-primary',
+											action  : function (modalWrapper, button, buttonData, originalEvent)
+											{
+												modalWrapper.hide();
+
+												if (response.errNum == 0) {
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
+												}
+											}
+										},
+									]
+								});
+							}
+						});
+						
+						modalWrapper.hide();
+					}
+				}
+			]
+		});
+	}
+
+	function updateBusinessAdmin()
+	{
+		BootstrapModalWrapperFactory.confirm({
+			title          : '<?= Yii::t('app', 'Confirm') ?>',
+			message        : '<?= Yii::t('app', 'Are you sure you want to update business admin') ?>?',
+			closeByBackdrop: false,
+			buttons: [
+				{
+					label: '<?= Yii::t('app', 'No') ?>',
+					cssClass: "btn btn-sm btn-secondary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						modalWrapper.hide();
+					}
+				}, 
+				{
+					label: '<?= Yii::t('app', 'Yes') ?>',
+					cssClass: "btn btn-sm btn-primary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						var data = {
+							'businessAdminId': _businessAdminId,
+							'businessUserFirstName'	: $('#inputFirstName').val(),
+							'businessUserLastName'	: $('#inputLastName').val(),
+							'businessUserGender' : $('#inputGender option:selected').val(),
+							'businessUserBirthdate'	: $('#inputBirthdate').val(),
+							'businessUserEmail'	: $('#inputEmail').val(),
+							'businessUserPhone'	: $('#inputPhone').val()
+						}
+
+						$.ajax({
+							type : 'POST',
+							data : data,
+							dataType : 'JSON',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-business-admin') ?>',
+							success : function(response)
+							{
+								BootstrapModalWrapperFactory.alert({
+									title  : '<?= Yii::t('app', 'Message') ?>',
+									message: nl2br(msgConverter(response)),
+									closeByBackdrop: false,
+									buttons: [
+										{
+											label   : 'OK',
+											cssClass: 'btn btn-primary',
+											action  : function (modalWrapper, button, buttonData, originalEvent)
+											{
+												modalWrapper.hide();
+
+												if (response.errNum == 0) {
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
+												}
+											}
+										},
+									]
+								});
+							}
+						});
+						
+						modalWrapper.hide();
+					}
+				}
+			]
+		});
+	}
+	
+	function updateBusinessOffice()
+	{
+		BootstrapModalWrapperFactory.confirm({
+			title          : '<?= Yii::t('app', 'Confirm') ?>',
+			message        : '<?= Yii::t('app', 'Are you sure you want to update business office') ?>?',
+			closeByBackdrop: false,
+			buttons: [
+				{
+					label: '<?= Yii::t('app', 'No') ?>',
+					cssClass: "btn btn-sm btn-secondary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						modalWrapper.hide();
+					}
+				}, 
+				{
+					label: '<?= Yii::t('app', 'Yes') ?>',
+					cssClass: "btn btn-sm btn-primary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						var data = {
+							'businessId': _businessId,
+							'businessOfficeId': _businessOfficeId,
+							'businessOfficeCode' : $('#inputOfficeCode').val(),
+							'businessOfficeName' : $('#inputOfficeName').val(),
+							'businessOfficeCountry' : $('#inputOfficeCountry option:selected').val(),
+							'businessOfficeCity' : $('#inputOfficeCity option:selected').val(),
+							'businessOfficeAddress' : $('#inputOfficeAddress').val(),
+							'businessOfficePhone' : $('#inputOfficePhone').val(),
+							'businessOfficeFax' : $('#inputOfficeFax').val(),
+						}
+
+						$.ajax({
+							type : 'POST',
+							data : data,
+							dataType : 'JSON',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-business-office') ?>',
+							success : function(response)
+							{
+								BootstrapModalWrapperFactory.alert({
+									title  : '<?= Yii::t('app', 'Message') ?>',
+									message: nl2br(msgConverter(response)),
+									closeByBackdrop: false,
+									buttons: [
+										{
+											label   : 'OK',
+											cssClass: 'btn btn-primary',
+											action  : function (modalWrapper, button, buttonData, originalEvent)
+											{
+												modalWrapper.hide();
+
+												if (response.errNum == 0) {
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
+												}
+											}
+										},
+									]
+								});
+							}
+						});
+						
+						modalWrapper.hide();
+					}
+				}
+			]
+		});
+	}
+
+	function updateBusinessApps()
+	{
+		BootstrapModalWrapperFactory.confirm({
+			title          : '<?= Yii::t('app', 'Confirm') ?>',
+			message        : '<?= Yii::t('app', 'Are you sure you want to add business apps') ?>?',
+			closeByBackdrop: false,
+			buttons: [
+				{
+					label: '<?= Yii::t('app', 'No') ?>',
+					cssClass: "btn btn-sm btn-secondary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						modalWrapper.hide();
+					}
+				}, 
+				{
+					label: '<?= Yii::t('app', 'Yes') ?>',
+					cssClass: "btn btn-sm btn-primary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						var data = {
+							'businessApps'  	: $('#inputBusinessApps').val().join(),
+						}
+
+						$.ajax({
+							type : 'POST',
+							data : data,
+							dataType : 'JSON',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/') ?>',
+							success : function(response)
+							{
+								BootstrapModalWrapperFactory.alert({
+									title  : '<?= Yii::t('app', 'Message') ?>',
+									message: nl2br(msgConverter(response)),
+									closeByBackdrop: false,
+									buttons: [
+										{
+											label   : 'OK',
+											cssClass: 'btn btn-primary',
+											action  : function (modalWrapper, button, buttonData, originalEvent)
+											{
+												modalWrapper.hide();
+
+												if (response.errNum == 0) {
+													
+												}
+											}
+										},
+									]
+								});
+							}
+						});
+						
+						modalWrapper.hide();
+					}
+				}
+			]
+		});
+	}
+	
+	function updateGlobalVariables()
+	{
+		BootstrapModalWrapperFactory.confirm({
+			title          : '<?= Yii::t('app', 'Confirm') ?>',
+			message        : '<?= Yii::t('app', 'Are you sure you want to update global variables') ?>?',
+			closeByBackdrop: false,
+			buttons: [
+				{
+					label: '<?= Yii::t('app', 'No') ?>',
+					cssClass: "btn btn-sm btn-secondary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						modalWrapper.hide();
+					}
+				}, 
+				{
+					label: '<?= Yii::t('app', 'Yes') ?>',
+					cssClass: "btn btn-sm btn-primary",
+					action: function(modalWrapper, button, buttonData, originalEvent) 
+					{
+						let globalVariableDataJson = JSON.stringify(getGlobalVariableData());
+
+						$.ajax({
+							type : 'POST',
+							data : {
+								'globalVariables': globalVariableDataJson,
+								'businessId': _businessId
+							},
+							dataType : 'JSON',
+							url : '<?= Yii::$app->getUrlManager()->createUrl('sa/business-management/update-business-global-variables') ?>',
+							success : function(response)
+							{
+								BootstrapModalWrapperFactory.alert({
+									title  : '<?= Yii::t('app', 'Message') ?>',
+									message: nl2br(msgConverter(response)),
+									closeByBackdrop: false,
+									buttons: [
+										{
+											label   : 'OK',
+											cssClass: 'btn btn-primary',
+											action  : function (modalWrapper, button, buttonData, originalEvent)
+											{
+												modalWrapper.hide();
+
+												if (response.errNum == 0) {
+													$('#modalBusiness').modal('hide');
+													resetBusinessDetailForm();
+													$('#tblBusinessList').bootstrapTable('refresh');
+												}
+											}
+										},
+									]
+								});
+							}
+						});
+						
+						modalWrapper.hide();
+					}
+				}
+			]
 		});
 	}
 
@@ -638,7 +1371,7 @@
 	}
 
 	function nameFormatter(value, row, index) {
-		return `<label class="link-label" data-code="${row.id}" onclick="showModalBusinessDetail(this.dataset.code)">${value}</label>`;
+		return `<label class="link-label" onclick="showModalBusinessDetail(${row.id})">${value}</label>`;
 	}
 
 	function emailFormatter(value, row, index) {
